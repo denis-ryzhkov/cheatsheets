@@ -33,12 +33,13 @@
         * **Config**: describes **Kind** of Object, **Name** and **Labels** to identify it, and **Spec** - its **Desired State**
             * [Example](https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/application/deployment.yaml)
             * Sent by SDK or by `kubectl apply -f configs/object.yaml` as JSON to API
-            * CRUD [best practice](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/):
+            * Low-level CRUD [best practice](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/):
                 * `kubectl diff -Rf configs/`
                 * `kubectl apply -Rf configs/`
                 * While `--prune` flag is [in alpha](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/#how-to-delete-objects)
                   and `kubectl apply` fails for empty `configs/` dir:  
                   `kubectl delete -f configs/object.yaml && git rm $_`
+            * Use [Helm](https://helm.sh/) for high-level CRUD, K8s package manager, templating (scripting) of K8s configs.
         * Kinds of Objects not defined above:
             * **[Workload](https://kubernetes.io/docs/concepts/workloads/controllers/)**:
                 * **[ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)**: how many replicas of Pod are desired
