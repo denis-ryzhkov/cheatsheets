@@ -6,4 +6,4 @@
 ## Lib
 
 * [echorun](echorun)
-* [saferun](saferun)
+* [try](try)

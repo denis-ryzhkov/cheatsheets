@@ -1,4 +1,4 @@
-# saferun
+# try
 
 Let's check this code:
 
@@ -77,15 +77,15 @@ The best workaround so far: https://stackoverflow.com/a/11092989
 Reusable function:
 
 ```bash
-function saferun {
+function try {
   # Run the args in a `set -e` mode.
-  # Error code should be checked with `if ((err))`.
-  # Please don't check it directly with `if saferun`, `saferun ||`, etc.
-  # Explained: https://github.com/denis-ryzhkov/cheatsheets/tree/main/bash/saferun
+  # Error code should be checked with `((ERR))`.
+  # Please don't check it directly with `if try`, `try ||`, etc.
+  # Explained: https://github.com/denis-ryzhkov/cheatsheets/tree/main/bash/try
 
   set +e
   (set -e; "$@")
-  declare -g err=$?
+  declare -gx ERR=$?
   set -e
 }
 ```
@@ -93,9 +93,8 @@ function saferun {
 Usage example:
 
 ```bash
-saferun func arg1 arg2
-
-if ((err))
+try func arg1 arg2
+if ((ERR))
 then echo "func failed"
 else echo "func succeeded"
 fi
