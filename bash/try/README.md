@@ -111,3 +111,6 @@ func failed
 ```
 
 This time this is exactly what we expected.
+
+Caveats:
+* `try` wraps your function into a subshell, so `export` and `declare -gx` will not let you set variables in outer shell. [Use files!](https://stackoverflow.com/q/23564995).
