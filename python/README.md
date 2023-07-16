@@ -7,3 +7,15 @@
 * Format:
     * Docstrings - like [Google](https://google.github.io/styleguide/pyguide.html#383-functions-and-methods)
     * All the rest - using [black](https://github.com/psf/black) and [isort](https://pycqa.github.io/isort/) as in [pyblank](https://github.com/denis-ryzhkov/pyblank)
+
+## Lib
+
+### classproperty
+
+```python
+class classproperty(property):
+    def __get__(self, owner_self, owner_cls):
+        return self.fget(owner_cls)
+```
+
+[Explained](https://stackoverflow.com/a/13624858)

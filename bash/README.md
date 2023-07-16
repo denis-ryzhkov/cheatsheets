@@ -21,3 +21,11 @@ command2 --args2 "${shared_args[@]}"
 
 * [echorun](echorun)
 * [try](try)
+
+### rand-str
+
+```bash
+LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom | head -c 64
+```
+
+[Explained](https://stackoverflow.com/a/62087619)
