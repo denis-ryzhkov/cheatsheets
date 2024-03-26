@@ -75,6 +75,13 @@ https://www.gnu.org/software/bash/manual/bash.html
 >  
 > ...If a compound command or shell function executes in a context where `-e` is being ignored, none of the commands executed within the compound command or function body will be affected by the `-e` setting, even if `-e` is set and a command returns a failure status. If a compound command or shell function sets `-e` while executing in a context where `-e` is ignored, that setting will not have any effect until the compound command or the command containing the function call completes.
 
+* Found later:
+  * The script `set -e; false && anything; echo "exit code $?, should not see this"`
+  * unexpectedly succeeds, logging `exit code 1, should not see this`
+  * because the failing `false` is not "following the final `&&`".
+  * So the `false && anything` line does fail with exit code 1,
+  * but the whole script still does not fail despite `set -e`!
+
 The best workaround so far: https://stackoverflow.com/a/11092989
 
 Reusable function:
