@@ -10,7 +10,7 @@
 
 ## Lib
 
-* [realtime-capture](realtime-capture.py)
+* [realtime-capture](realtime-capture)
 
 ### classproperty
 
