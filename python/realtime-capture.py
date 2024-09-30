@@ -12,7 +12,6 @@ sub = subprocess.Popen(
 )
 
 assert sub.stdout and sub.stderr
-lines = []
 
 streams: Dict[IO[str], IO[str]] = {
     sub.stdout: sys.stdout,
@@ -38,7 +37,10 @@ with selectors.DefaultSelector() as selector:
             sys_stream.write(line)
             sys_stream.flush()
 
-            lines.append(line)
+            if sys_stream is sys.stdout:
+                pass  # Process stdout line.
+            else:
+                pass  # Process stderr line.
 
 exit_code = sub.wait()
-print(exit_code, len(lines))
+print(exit_code)
